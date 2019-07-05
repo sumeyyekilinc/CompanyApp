@@ -1,12 +1,16 @@
 package company.entitiy;
 
-public  class Date  {
+import javax.persistence.*;
+
+@MappedSuperclass
+public  class Date extends BaseEntity {
     public String startDate;
     public String endDate;
 
     public Date() {
     }
 
+@Column(name = "START_DATE")
     public String getStartDate() {
         return startDate;
     }
@@ -15,6 +19,8 @@ public  class Date  {
         this.startDate = startDate;
     }
 
+    @Id
+    @Column(name = "END_NAME")
     public String getEndDate() {
         return endDate;
     }

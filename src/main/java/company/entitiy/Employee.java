@@ -1,5 +1,11 @@
 package company.entitiy;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="EMPLOYEE")
 public class Employee extends BaseEntity {
 
     private String firstName;
@@ -10,6 +16,7 @@ public class Employee extends BaseEntity {
     private OrgStructure orgStructure;
 
 
+
     public Employee() {
     }
 
@@ -18,7 +25,7 @@ public class Employee extends BaseEntity {
         this.lastName = lastName;
         this.placeOfBirth = placeOfBirth;
     }
-
+    @Column(name="FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
@@ -27,6 +34,7 @@ public class Employee extends BaseEntity {
         this.firstName = firstName;
     }
 
+    @Column(name="LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -35,6 +43,7 @@ public class Employee extends BaseEntity {
         this.lastName = lastName;
     }
 
+    @Column(name="PLACE_OF_BIRTH")
     public String getPlaceOfBirth() {
         return placeOfBirth;
     }
@@ -43,6 +52,7 @@ public class Employee extends BaseEntity {
         this.placeOfBirth = placeOfBirth;
     }
 
+    @Column(name="DATE_OF_BIRTH")
     public String getDateOfBirth() {
         return dateOfBirth;
     }
@@ -50,7 +60,5 @@ public class Employee extends BaseEntity {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
-
 
 }

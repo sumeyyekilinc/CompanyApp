@@ -1,6 +1,12 @@
 package company.entitiy;
 
-public class EmployeeContact  {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+    @Entity
+    @Table(name="EMPLOYEE_CONTACT")
+    public class EmployeeContact extends BaseEntity  {
 
     private String street;
     private String city;
@@ -10,11 +16,10 @@ public class EmployeeContact  {
     private Employee employee;
 
 
-    
     public EmployeeContact() {
 
     }
-
+    @Column(name="STREET")
     public String getStreet() {
         return street;
     }
@@ -23,6 +28,7 @@ public class EmployeeContact  {
         this.street = street;
     }
 
+    @Column(name="CITY")
     public String getCity() {
         return city;
     }
@@ -31,6 +37,7 @@ public class EmployeeContact  {
         this.city = city;
     }
 
+    @Column(name="COUNTRY")
     public String getCountry() {
         return country;
     }
@@ -39,6 +46,7 @@ public class EmployeeContact  {
         this.country = country;
     }
 
+    @Column(name="PHONE")
     public String getPhone() {
         return phone;
     }
@@ -47,6 +55,7 @@ public class EmployeeContact  {
         this.phone = phone;
     }
 
+    @Column(name="EMAIL")
     public String getEmail() {
         return email;
     }
@@ -55,5 +64,11 @@ public class EmployeeContact  {
         this.email = email;
     }
 
+        public Employee getEmployee() {
+            return employee;
+        }
 
-}
+        public void setEmployee(Employee employee) {
+            this.employee = employee;
+        }
+    }
