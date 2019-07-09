@@ -2,16 +2,20 @@ package company.entitiy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Set;
 
 @Entity
-@Table(name = "ORG_STRUCTURE")
+
 public class OrgStructure extends BaseEntity  {
-
+    @Column
     private String unitName;
+    @Column
     private String unitHead;
+    @OneToMany(mappedBy = "orgStructure")
+    private Set<Employee> employees;
 
-    @Column(name = "UNIT_NAME")
     public String getUnitName() {
         return unitName;
     }
@@ -20,12 +24,19 @@ public class OrgStructure extends BaseEntity  {
         this.unitName = unitName;
     }
 
-    @Column(name = "UNIT_HEAD")
     public String getUnitHead() {
         return unitHead;
     }
 
     public void setUnitHead(String unitHead) {
         this.unitHead = unitHead;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 }

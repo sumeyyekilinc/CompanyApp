@@ -10,7 +10,7 @@ public  class Date extends BaseEntity {
     public Date() {
     }
 
-@Column(name = "START_DATE")
+
     public String getStartDate() {
         return startDate;
     }
@@ -19,8 +19,6 @@ public  class Date extends BaseEntity {
         this.startDate = startDate;
     }
 
-    @Id
-    @Column(name = "END_NAME")
     public String getEndDate() {
         return endDate;
     }

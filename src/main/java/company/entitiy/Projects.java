@@ -2,19 +2,30 @@ package company.entitiy;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+import java.util.Set;
 
 @Entity
-@Table(name="PROJECT")
 public class Projects extends Date{
+    @Column
     private String projectName;
 
-    @Column(name="PROJECT_NAME")
+    @OneToMany(mappedBy = "projects")
+    private Set<EmployeeProject> employeeProjects;
+
     public String getProjectName() {
         return projectName;
     }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public Set<EmployeeProject> getEmployeeProjects() {
+        return employeeProjects;
+    }
+
+    public void setEmployeeProjects(Set<EmployeeProject> employeeProjects) {
+        this.employeeProjects = employeeProjects;
     }
 }

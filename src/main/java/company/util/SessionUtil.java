@@ -1,42 +1,86 @@
 package company.util;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class SessionUtil {
-    static SessionFactory sessionFactory=null;
+    private static SessionUtil me;
+   private static  SessionFactory sessionFactory;
+  private Configuration configuration;
+
+    public SessionUtil() throws HibernateException {
+        configuration = new Configuration().configure();
+        sessionFactory= configuration.buildSessionFactory();
+    }
+
+
+    public static synchronized SessionUtil getInstance() throws HibernateException {
+        if (me == null) {
+            me = new SessionUtil();
+        }
+
+        return me;
+    }
+
+    public Session getSession() throws HibernateException {
+        Session session = sessionFactory.openSession();
+        if (!session.isConnected()) {
+            this.reconnect();
+        }
+        return session;
+    }
+
+    private void reconnect() throws HibernateException {
+        this.sessionFactory = configuration.buildSessionFactory();
+    }
+
+}
+
+
+/*static {
+        try{
+        loadSessionFactory();
+        }catch(Exception e){
+        System.err.println("Exception while initializing hibernate util.. ");
+        e.printStackTrace();
+        }
+        }
+
+public static void loadSessionFactory() {
+
+        Session session ;
+        Configuration configuration = new Configuration();
+        configuration.configure("hibernate.cfg.xml");
+        configuration.addAnnotatedClass(Employee.class);
+        ServiceRegistry srvcReg = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.buildSessionFactory(srvcReg);
+        session=sessionFactory.openSession();
+
+        }*/
+
+/*
     public static void main(String[] args) {
 
 
+        Employee employee= new Employee();
+        employee.setFirstName("sumeyye");
         try{
-            SessionFactory sessionFactory = (SessionFactory) new Configuration().configure("hibernate.cfg.xml");
+            Configuration configuration = new Configuration();
+            sessionFactory = (SessionFactory) configuration.configure("hibernate.cfg.xml");
+            configuration.addAnnotatedClass(Employee.class);
             Session session = sessionFactory.openSession();
+            System.out.println("transaction başlatıldı.");
             session.beginTransaction();
+            session.save(employee);
+            session.getTransaction().commit();
+            System.out.println("transaction tamamlandı");
         }catch(Exception e) {
             System.err.println("Exception while initializing hibernate util.. ");
             e.printStackTrace();
         }
 
     }
-    public static Session getSession() throws HibernateException {
-
-        Session retSession=null;
-        try {
+*/
 
 
-            retSession=sessionFactory.openSession();
-        }catch(Throwable t){
-            System.err.println("Exception while getting session.. ");
-            t.printStackTrace();
-        }
-        if(retSession == null) {
-            System.err.println("session is discovered null");
-        }
-
-        return retSession;
-    }
-
-
-}

@@ -1,25 +1,29 @@
 package company.entitiy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
     @Entity
-    @Table(name="EMPLOYEE_CONTACT")
-    public class EmployeeContact extends BaseEntity  {
+    public class EmployeeContact extends BaseEntity {
 
+    @Column
     private String street;
+    @Column
     private String city;
+    @Column
     private String country;
+    @Column
     private String phone;
+    @Column
     private String email;
+
+    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Employee employee;
 
 
     public EmployeeContact() {
 
     }
-    @Column(name="STREET")
     public String getStreet() {
         return street;
     }
@@ -28,7 +32,6 @@ import javax.persistence.Table;
         this.street = street;
     }
 
-    @Column(name="CITY")
     public String getCity() {
         return city;
     }
@@ -37,7 +40,6 @@ import javax.persistence.Table;
         this.city = city;
     }
 
-    @Column(name="COUNTRY")
     public String getCountry() {
         return country;
     }
@@ -46,7 +48,6 @@ import javax.persistence.Table;
         this.country = country;
     }
 
-    @Column(name="PHONE")
     public String getPhone() {
         return phone;
     }
@@ -55,7 +56,6 @@ import javax.persistence.Table;
         this.phone = phone;
     }
 
-    @Column(name="EMAIL")
     public String getEmail() {
         return email;
     }
@@ -64,11 +64,11 @@ import javax.persistence.Table;
         this.email = email;
     }
 
-        public Employee getEmployee() {
-            return employee;
-        }
-
-        public void setEmployee(Employee employee) {
-            this.employee = employee;
-        }
+    public Employee getEmployee() {
+        return employee;
     }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+}

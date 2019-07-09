@@ -1,18 +1,17 @@
 package company.entitiy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.print.attribute.standard.MediaSize;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "ORG_ROLES")
 public class OrgRoles extends BaseEntity  {
 
+    @Column
     private String title;
 
-    @Column(name = "TITLE")
+    @OneToMany(mappedBy = "orgRoles")
+    private Set<Employee> employees;
+
     public String getTitle() {
         return title;
     }
