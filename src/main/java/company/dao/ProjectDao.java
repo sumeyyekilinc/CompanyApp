@@ -5,7 +5,6 @@ import company.entitiy.Projects;
 import company.util.SessionUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import java.util.List;
 
 public class ProjectDao extends BaseDaoImp {
@@ -29,11 +28,23 @@ public class ProjectDao extends BaseDaoImp {
         } finally {
             session.close();
         }
-
     }
 
     @Override
     public List<BaseEntity> getList(int limit) {
-        return null;//Hibernate create query bir tablodan liste getirme
+        Session session =null;
+        List<BaseEntity> empList;
+        try {
+            session = SessionUtil.getInstance().getSession();
+            Query query = session.createQuery("select emp from Project emp");
+            empList = query.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+        return empList;//Hibernate create query bir tablodan liste getirme
     }
 }

@@ -11,7 +11,7 @@ public class EmployeeProject extends Date{
     private Employee employee;
 
     @JoinColumn
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Projects project;
 
     @OneToMany(mappedBy = "employeeProject")

@@ -32,9 +32,21 @@ public class OrgStructureDao extends BaseDaoImp {
         }
 
     }
-
     @Override
     public List<BaseEntity> getList(int limit) {
-        return null;//Hibernate create query bir tablodan liste getirme
+        Session session =null;
+        List<BaseEntity> empList;
+        try {
+            session = SessionUtil.getInstance().getSession();
+            Query query = session.createQuery("select emp from OrgStructure emp");
+            empList = query.list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+        return empList;//Hibernate create query bir tablodan liste getirme
     }
 }

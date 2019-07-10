@@ -1,8 +1,6 @@
 package company.entitiy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -10,8 +8,8 @@ public class Projects extends Date{
     @Column
     private String projectName;
 
-    @OneToMany(mappedBy = "projects")
-    private Set<EmployeeProject> employeeProjects;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private EmployeeProject employeeProjects;
 
     public String getProjectName() {
         return projectName;
@@ -21,11 +19,12 @@ public class Projects extends Date{
         this.projectName = projectName;
     }
 
-    public Set<EmployeeProject> getEmployeeProjects() {
+    public EmployeeProject getEmployeeProjects() {
         return employeeProjects;
     }
 
-    public void setEmployeeProjects(Set<EmployeeProject> employeeProjects) {
+    public void setEmployeeProjects(EmployeeProject employeeProjects) {
         this.employeeProjects = employeeProjects;
     }
+
 }

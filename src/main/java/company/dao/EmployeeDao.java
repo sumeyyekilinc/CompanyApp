@@ -5,7 +5,6 @@ import company.entitiy.Employee;
 import company.util.SessionUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import java.util.List;
 
 public class EmployeeDao extends BaseDaoImp {
@@ -30,7 +29,6 @@ public class EmployeeDao extends BaseDaoImp {
         } finally {
             session.close();
         }
-
     }
 
     @Override
