@@ -41,6 +41,7 @@ public class BaseDaoImp implements BaseDao {
         return entity;
     }
 
+
     public BaseEntity update(BaseEntity entity) {
         Session session = null;
         try {

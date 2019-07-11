@@ -17,6 +17,7 @@ public class EmployeeDao extends BaseDaoImp {
             Query query = session.createQuery("from Employee s where s.id = :id");
             query.setParameter("id", id);
 
+
             List queryList = query.list();
             if (queryList != null && queryList.isEmpty()) {
                 return null;
