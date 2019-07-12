@@ -30,10 +30,10 @@ public class ProjectDao extends BaseDaoImp {
         }
     }
 
-    @Override
-    public List<BaseEntity> getList(int limit) {
+
+    public List<ProjectDao> getList(int limit) {
         Session session =null;
-        List<BaseEntity> empList;
+        List<ProjectDao> empList;
         try {
             session = SessionUtil.getInstance().getSession();
             Query query = session.createQuery("select emp from Project emp");

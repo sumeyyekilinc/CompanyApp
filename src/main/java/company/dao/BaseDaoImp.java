@@ -3,6 +3,7 @@ package company.dao;
 import company.entitiy.BaseEntity;
 import company.util.SessionUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.List;
 
@@ -28,15 +29,18 @@ public class BaseDaoImp implements BaseDao {
 
     public BaseEntity save(BaseEntity entity) {
         Session session = null;
+        Transaction transaction = null;
         try {
             session = SessionUtil.getInstance().getSession();
+            transaction = session.beginTransaction();
             session.save(entity);
-            session.flush();
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
         } finally {
             session.close();
+            System.out.println("Session kapatıldı.");
         }
         return entity;
     }
@@ -57,7 +61,4 @@ public class BaseDaoImp implements BaseDao {
         return entity;
     }
 
-    public List<BaseEntity> getList(int limit) {
-        return null;
-    }
 }

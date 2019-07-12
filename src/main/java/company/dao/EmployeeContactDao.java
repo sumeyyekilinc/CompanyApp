@@ -32,10 +32,11 @@ public class EmployeeContactDao extends BaseDaoImp {
         }
 
     }
-    @Override
-    public List<BaseEntity> getList(int limit) {
+
+
+    public List<EmployeeContactDao> getList(int limit) {
         Session session =null;
-        List<BaseEntity> empList;
+        List<EmployeeContactDao> empList;
         try {
             session = SessionUtil.getInstance().getSession();
             Query query = session.createQuery("select emp from EmployeeContact emp");

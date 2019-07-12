@@ -13,6 +13,4 @@ public interface BaseDao {
     BaseEntity save(BaseEntity entity);
 
     BaseEntity update (BaseEntity entity);
-
-    List<BaseEntity> getList(int limit);
 }

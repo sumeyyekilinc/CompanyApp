@@ -32,10 +32,11 @@ public class OrgRolesDao extends BaseDaoImp {
         }
 
     }
-    @Override
-    public List<BaseEntity> getList(int limit) {
+
+
+    public List<OrgRoles> getList(int limit) {
         Session session =null;
-        List<BaseEntity> empList;
+        List<OrgRoles> empList;
         try {
             session = SessionUtil.getInstance().getSession();
             Query query = session.createQuery("select emp from OrgRoles emp");
