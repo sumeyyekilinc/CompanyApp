@@ -15,6 +15,7 @@ public class SessionUtil {
     }
 
 
+
     public static synchronized SessionUtil getInstance() throws HibernateException {
         if (me == null) {
             me = new SessionUtil();

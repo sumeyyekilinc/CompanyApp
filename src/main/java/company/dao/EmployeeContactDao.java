@@ -30,13 +30,11 @@ public class EmployeeContactDao extends BaseDaoImp {
         } finally {
             session.close();
         }
-
     }
 
-
-    public List<EmployeeContactDao> getList(int limit) {
+    public List<EmployeeContact> getList(int limit) {
         Session session =null;
-        List<EmployeeContactDao> empList;
+        List<EmployeeContact> empList;
         try {
             session = SessionUtil.getInstance().getSession();
             Query query = session.createQuery("select emp from EmployeeContact emp");

@@ -1,6 +1,5 @@
 package company.dao;
 
-import company.entitiy.BaseEntity;
 import company.entitiy.Employee;
 import company.util.SessionUtil;
 import org.hibernate.Query;
@@ -31,8 +30,6 @@ public class EmployeeDao extends BaseDaoImp {
             session.close();
         }
     }
-
-
     public List<Employee> getList(int limit) {
         Session session =null;
         List<Employee> empList;
@@ -41,8 +38,10 @@ public class EmployeeDao extends BaseDaoImp {
             Query query = session.createQuery("select emp from Employee emp");
             empList = query.setMaxResults(limit).list();
 
+
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("hatalı listeleme!!!!!!!!!!!!!!!!!!!!!!!!1");
             return null;
         } finally {
             session.close();

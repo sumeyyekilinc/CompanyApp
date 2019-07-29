@@ -11,9 +11,6 @@ public class BaseEntity {
     public BaseEntity() {
     }
 
-    @Column
-    private boolean deleted;
-
     public Long getId() {
         return id;
     }
@@ -22,11 +19,4 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
 }

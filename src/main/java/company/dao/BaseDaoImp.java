@@ -5,20 +5,18 @@ import company.util.SessionUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.util.List;
-
 public class BaseDaoImp implements BaseDao {
-
     public BaseEntity find(Long id) {
         return null;
     }
-
     public void delete(BaseEntity entity) {
         Session session = null;
+        Transaction transaction = null;
         try {
             session = SessionUtil.getInstance().getSession();
+            transaction = session.beginTransaction();
             session.delete(entity);
-            session.flush();
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();
@@ -26,7 +24,6 @@ public class BaseDaoImp implements BaseDao {
             session.close();
         }
     }
-
     public BaseEntity save(BaseEntity entity) {
         Session session = null;
         Transaction transaction = null;
@@ -44,14 +41,15 @@ public class BaseDaoImp implements BaseDao {
         }
         return entity;
     }
-
-
     public BaseEntity update(BaseEntity entity) {
         Session session = null;
+        Transaction transaction = null;
         try {
             session = SessionUtil.getInstance().getSession();
+            transaction=session.beginTransaction();
             session.saveOrUpdate(entity);
             session.flush();
+            transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
             session.getTransaction().rollback();

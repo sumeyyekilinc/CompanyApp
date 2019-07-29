@@ -1,6 +1,5 @@
 package company.dao;
 
-import company.entitiy.BaseEntity;
 import company.entitiy.EmployeeProject;
 import company.util.SessionUtil;
 import org.hibernate.Query;
@@ -33,9 +32,9 @@ public class EmployeeProjectDao extends BaseDaoImp {
     }
     
 
-    public List<EmployeeProjectDao> getList(int limit) {
+    public List<EmployeeProject> getList(int limit) {
         Session session =null;
-        List<EmployeeProjectDao> empList;
+        List<EmployeeProject> empList;
         try {
             session = SessionUtil.getInstance().getSession();
             Query query = session.createQuery("select emp from EmployeeProject emp");

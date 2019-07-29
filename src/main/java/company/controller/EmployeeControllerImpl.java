@@ -2,44 +2,51 @@ package company.controller;
 
 import company.dao.EmployeeDao;
 import company.entitiy.Employee;
-
 import java.util.List;
 import java.util.Objects;
 
 public class EmployeeControllerImpl implements EmployeeController {
-
-
     public Employee createNewEmployee(Employee newEmployee) {
-
         EmployeeDao ed = new EmployeeDao();
-
         if (Objects.nonNull(newEmployee)) {
-            if (newEmployee.getFirstName().trim().startsWith("A")) {
                 ed.save(newEmployee);
             }else {
-                System.out.println("İsim A ile başlamadığı için kaydedilmedi");
-                throw new IllegalArgumentException("HATALI KAYIT A ILE BASLAMIYOR ");
+                throw new IllegalArgumentException("HATALI KAYIT!!! ");
             }
-
-
-
-        }
-
-        /*
-
-        List<BaseEntity> emplist = ed.getList(5);
-        for (Iterator iterator = emplist.iterator(); iterator.hasNext();){
-
-            Employee employee = (Employee) iterator.next();
-            System.out.print("First Name: " + employee.getFirstName());
-            System.out.print("  Last Name: " + employee.getLastName());
-        }
-
-        ed.delete(e);
-    */
         return newEmployee;
     }
-
+    @Override
+    public Employee updateEmployee(Employee updateEmployee) {
+        EmployeeDao ed = new EmployeeDao();
+        EmployeeController employeeController = new EmployeeControllerImpl();
+        List<Employee> liste = employeeController.getEmployeeList(10);
+        if (Objects.nonNull(updateEmployee)) {
+            for (int i = 0 ; i< liste.size();i++){
+                updateEmployee = liste.get(i);
+                if(updateEmployee.getLastName().equalsIgnoreCase("kILINç"))
+                { updateEmployee.setPlaceOfBirth("bolu");
+                   ed.update(updateEmployee);
+                }
+            }
+            ed.update(updateEmployee);
+        }else {
+            throw new IllegalArgumentException("Guncellenemedi!!! ");
+        }
+        return updateEmployee;
+    }
+    @Override
+    public void deleteEmployee(Employee employee)
+    { EmployeeDao employeeDao = new EmployeeDao();
+        EmployeeController employeeController = new EmployeeControllerImpl();
+        List<Employee> liste = employeeController.getEmployeeList(10);
+        for (int i = 0 ; i< liste.size();i++){
+             employee = liste.get(i);
+            if(employee.getLastName().equalsIgnoreCase("kILINç"))
+            {
+                employeeDao.delete(employee);
+            }
+        }
+    }
     @Override
     public List<Employee> getEmployeeList(int limit) {
         EmployeeDao employeeDao = new EmployeeDao();
@@ -47,10 +54,8 @@ public class EmployeeControllerImpl implements EmployeeController {
         return employeeList;
     }
 
-
-
+    @Override
     public void sessionAc() {
-        System.out.println("Emplooye için session açıldı.");
     }
 }
 

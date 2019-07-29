@@ -29,7 +29,6 @@ public class Employee extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private EmployeeProject employeeProject;
 
-
     public Employee() {
     }
 
@@ -38,63 +37,52 @@ public class Employee extends BaseEntity {
         this.lastName = lastName;
         this.placeOfBirth = placeOfBirth;
     }
-
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
     public String getPlaceOfBirth() {
         return placeOfBirth;
     }
-
     public void setPlaceOfBirth(String placeOfBirth) {
         this.placeOfBirth = placeOfBirth;
     }
-
-
     public String getDateOfBirth() {
         return dateOfBirth;
     }
-
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
     public OrgRoles getOrgRoles() {
         return orgRoles;
     }
-
     public void setOrgRoles(OrgRoles orgRoles) {
         this.orgRoles = orgRoles;
     }
-
     public OrgStructure getOrgStructure() {
         return orgStructure;
     }
-
     public void setOrgStructure(OrgStructure orgStructure) {
         this.orgStructure = orgStructure;
     }
-
     public Set<EmployeeContact> getEmployeeContact() {
         return employeeContact;
     }
-
     public void setEmployeeContact(Set<EmployeeContact> employeeContact) {
         this.employeeContact = employeeContact;
+    }
+    public EmployeeProject getEmployeeProject() {
+        return employeeProject;
+    }
+    public void setEmployeeProject(EmployeeProject employeeProject) {
+        this.employeeProject = employeeProject;
     }
 }
